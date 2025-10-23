@@ -1,8 +1,9 @@
 // script.js
 
-/**
- * Carga un archivo HTML (componente) y lo inyecta en un elemento placeholder.
- */
+// ... (La función loadComponent permanece igual a la respuesta anterior,
+//      pero aquí tienes el punto clave de su llamada) ...
+
+// Función loadComponent (asumimos que ya está definida para reutilizarla)
 async function loadComponent(url, targetElementId) {
     try {
         const response = await fetch(url);
@@ -14,29 +15,24 @@ async function loadComponent(url, targetElementId) {
 
         if (targetElement) {
             targetElement.innerHTML = html;
-        } else {
-             throw new Error(`Placeholder con ID "${targetElementId}" no encontrado.`);
-        }
-
-        // Si el componente cargado es el header, inicializa su lógica específica.
-        if (url === 'header.html') {
-            // Llama a la función definida en header.js
-            if (typeof initHeaderInteractivity === 'function') {
-                initHeaderInteractivity();
-            }
+        } 
+        // Lógica de inicialización:
+        if (url === 'header.html' && typeof initHeaderInteractivity === 'function') {
+            initHeaderInteractivity();
         }
     } catch (error) {
         console.error('Fallo en la carga o inicialización del componente:', error);
     }
 }
 
+
 // Iniciar la carga de componentes cuando el DOM esté completamente listo
 document.addEventListener('DOMContentLoaded', () => {
-    // Carga el header en el placeholder <div id="header-container">
+    // Carga el Header (e inicia su lógica, gracias a la comprobación dentro de loadComponent)
     loadComponent('header.html', 'header-container');
 
-    // Aquí puedes cargar otros componentes, como el footer
-    // loadComponent('footer.html', 'footer-container'); 
+    // **NUEVA LÍNEA:** Carga el Footer
+    loadComponent('footer.html', 'footer-container'); 
 
     // Aquí va cualquier otra lógica que afecte a la página principal
 });
