@@ -31,8 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Carga el Header (e inicia su lógica, gracias a la comprobación dentro de loadComponent)
     loadComponent('header.html', 'header-container');
 
-    // **NUEVA LÍNEA:** Carga el Footer
+    // Carga el Footer
     loadComponent('footer.html', 'footer-container'); 
 
-    // Aquí va cualquier otra lógica que afecte a la página principal
 });
