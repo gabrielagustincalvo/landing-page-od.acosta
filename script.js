@@ -93,10 +93,10 @@ async function loadComponent(url, targetElementId) {
 
 document.addEventListener('DOMContentLoaded', () => {
     // Carga el Header (e inicia su lógica interactiva)
-    loadComponent('header.html', 'header-container');
+    loadComponent('/header.html', 'header-container');
 
     // Carga el Footer (no tiene lógica interactiva propia)
-    loadComponent('footer.html', 'footer-container'); 
+    loadComponent('/footer.html', 'footer-container'); 
 
     // Aquí podría ir otra lógica de inicialización para el MAIN
 });
