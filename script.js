@@ -7,12 +7,12 @@
 const LOCATIONS = [
     {
         id: 'mapa-villarino',
-        coords: { lat: -40.81432, lng: -62.99268 }, // Coordenadas de Villarino
+        coords: { lat: -40.80377, lng: -62.99217 }, // Coordenadas de Villarino
         title: 'Consultorio Villarino'
     },
     {
         id: 'mapa-zatti',
-        coords: { lat: -40.80911, lng: -63.00345 }, // Coordenadas de Zatti
+        coords: { lat: -40.81562, lng: -62.99279 }, // Coordenadas de Zatti
         title: 'Consultorio Zatti'
     }
 ];
