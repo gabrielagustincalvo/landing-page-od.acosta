@@ -1,37 +1,30 @@
-<!--Seccion Header: logo - Menu - Busqueda-->
 
-<header class="header-landing">
-    <div class="wrap-logo">
-        <img src="/assets/img/logo-horizontal1.jpeg" alt="image" class="logo-header">
-    </div>
 
-    <div>
-        <nav>
-            <ul class="main-menu">
-                <li><a href="/index.html">Inicio</a></li>
-                <li><a href="/acercademi.html">Acerca de mi</a></li>
-                
-                <li class="menu-desplegable" id="menu-tratamientos">
-                    <a href="/tratamientos.html">Tratamientos</a>
-                    <ul class="submenu" id="submenu-tratamientos">
-                        <li><a href="/tratamientos/odontologiaconservadora.html">Odontología Conservadora</a></li>
-                        <li><a href="/tratamientos/bruxismo.html">Bruxismo</a></li>
-                        <li><a href="/tratamientos/cuidadointegralbucal.html">Cuidado integral bucal</a></li>
-                        <li><a href="/tratamientos/protesisyrehabilitacionoral.html">Prótesis y rehabilitación oral</a></li>
-                        <li><a href="/tratamientos/periodoncia.html">Periodoncia</a></li>
-                        <li><a href="/tratamientos/cirugiadental.html">Cirugía dental</a></li>
-                    </ul>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #d4e4f4;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+            <img src="/assets/img/logo-horizontal1.jpeg" alt="Odontología Acosta Logo" class="logo-header">
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index.html">Inicio</a>
                 </li>
-
-                <li><a href="/contacto.html">Contacto</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pages/acercademi.html">Acerca de mi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pages/tratamientos.html">Tratamientos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pages/contacto.html">Contacto</a>
+                </li>
             </ul>
-        </nav>
+        </div>
     </div>
-
-    <div class="search">
-        <form action="/search" method="get" class="search-form" id="search-form">
-            <input type="text" name="q" placeholder="Buscar..." id="search-input">
-            <button type="submit">🔍</button>
-        </form>
-    </div>
-</header>
+</nav>

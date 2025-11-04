@@ -1,0 +1,31 @@
+/** Estilos generales **/
+
+/* ... tus estilos existentes ... */
+
+/* estilos.css */
+
+/* Mantener el logo responsive y con un límite de tamaño */
+.logo-header {
+    max-width: 250px; /* Un poco más pequeño, 300px puede ser grande en móvil */
+    height: auto;
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Añadir esta regla para asegurar que las imágenes sean responsive */
+img {
+    max-width: 100%;
+    height: auto; /* Mantiene la proporción */
+}
+
+/* Si quieres que los "cards" de tratamientos se vean bien */
+.item-tratamientos-section {
+    display: block; /* Asegura que el enlace ocupe todo el espacio de la columna */
+    color: #333; /* Color de texto por defecto */
+    transition: transform 0.3s;
+}
+
+.item-tratamientos-section:hover {
+    transform: translateY(-5px); /* Pequeño efecto al pasar el mouse */
+}
+
