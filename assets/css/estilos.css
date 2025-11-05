@@ -42,6 +42,7 @@ h1 {
 
 h2 {
     font-size: 2.5rem;
+    color: #124b7f;
 }
 
 h3 {
@@ -174,7 +175,72 @@ img {
 .wrap-img_two-column:nth-child(2) { ... }
 */
 
+/* ======================================================= */
+/* SECCIÓN TRATAMIENTOS - OPTIMIZADA PARA BOOTSTRAP GRID */
+/* ======================================================= */
 
+/* Contenedor principal de la sección */
+.section-tratamientos-section {
+    padding: 60px 15px; /* Más padding para que respire */
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Eliminamos el display: flex; aquí, ya que el contenido usa .container */
+}
+
+/* Título de la sección */
+.section-tratamientos-section .wrap-title-section h2 {
+    text-align: center;
+    margin-bottom: 50px; /* Más espacio para separar del contenido */
+    font-weight: 700;
+}
+
+/* Estilos para el elemento Tarjeta (el <a>) */
+.item-tratamientos-section {
+    display: block; /* Mantiene el enlace como bloque */
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #e0e0e0; /* Borde muy suave, ya que ya tiene sombra */
+    /* Usamos 'var(--border-r)' para el redondeo consistente */
+    border-radius: var(--border-r); 
+    
+    /* Efecto de transición para el hover */
+    transition: all 0.3s ease-in-out; 
+}
+
+/* 🚀 MEJORA ESTÉTICA: EFECTO HOVER */
+.item-tratamientos-section:hover {
+    transform: translateY(-5px); /* Se levanta un poco */
+    box-shadow: 0 10px 20px rgba(41, 119, 213, 0.2); /* Sombra con color principal */
+    border-color: var(--main-c); /* Resaltamos el borde */
+}
+
+/* Estilos de la IMAGEN dentro de la Tarjeta */
+.item-tratamientos-section img {
+    width: 100%;
+    /* Mantenemos un alto fijo o un aspect-ratio para uniformidad */
+    height: 220px; 
+    object-fit: cover; /* Asegura que la imagen cubra sin estirarse */
+    margin-bottom: 15px;
+    /* La clase 'rounded' de Bootstrap ya la redondea ligeramente */
+}
+
+/* Estilos de la Tipografía en la Tarjeta */
+.item-tratamientos-section h3 {
+    color: var(--main-c); /* Título del tratamiento en el color principal */
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.item-tratamientos-section p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* ⚠️ REGLAS ELIMINADAS: */
+/*
+.wrap-tratamientos-section y las reglas flex: 1; min-width: 250px; 
+fueron eliminadas porque el diseño de 3 columnas lo manejan las clases .col-lg-4 de Bootstrap.
+*/
 
 
 
