@@ -1,20 +1,54 @@
 // /assets/js/header.js
 
+function resaltarEnlaceActivo() {
+    // 1. Obtener la ruta de la página actual (ej. /pages/acercademi.html)
+    // Se usa 'pathname' que retorna la parte de la URL sin el dominio ni parámetros.
+    let rutaActual = window.location.pathname;
+
+    // Si estás en la raíz (index.html), window.location.pathname puede ser solo '/',
+    // lo ajustamos para que coincida con el href:
+    if (rutaActual === '/') {
+        rutaActual = '/index.html';
+    }
+    // Para cualquier página en /pages/ (ej. /pages/acercademi.html) se buscará la coincidencia.
+    
+    // 2. Iterar sobre todos los enlaces de navegación
+    const enlaces = document.querySelectorAll('.navbar-nav .nav-link');
+    
+    enlaces.forEach(enlace => {
+        // Obtenemos el atributo href de cada enlace y lo normalizamos
+        const hrefEnlace = enlace.getAttribute('href').toLowerCase();
+        
+        // 3. Comparar la ruta actual con el href del enlace
+        if (rutaActual.includes(hrefEnlace)) {
+            // Eliminar cualquier 'active' previo (aunque el forEach es suficiente si no hay errores)
+            // enlace.classList.remove('active');
+            
+            // 4. Agregar la clase 'active' al enlace correspondiente
+            enlace.classList.add('active');
+            // Opcional: Agregar la clase 'active' también al <li> padre (si lo necesita Bootstrap o CSS)
+            enlace.closest('.nav-item').classList.add('active'); 
+        } else {
+             // Opcional: Asegurarse de quitar 'active' de otros enlaces
+            enlace.classList.remove('active');
+            enlace.closest('.nav-item').classList.remove('active');
+        }
+    });
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Definimos la ruta de manera concisa.
-    const headerPath = '/includes/header.html'; // Asegúrate de que esta ruta sea correcta
+    const headerPath = '/includes/header.html'; 
     const headerContainer = document.getElementById('header-container');
 
     if (!headerContainer) {
         console.warn('El contenedor del encabezado (<div id="header-container"></div>) no fue encontrado.');
-        return; // Salir si el contenedor no existe
+        return; 
     }
 
-    // Usar fetch para obtener el contenido
     fetch(headerPath)
         .then(response => {
             if (!response.ok) {
-                // Lanza un error más específico si el archivo no se encuentra (404)
                 throw new Error(`Error ${response.status}: No se pudo cargar el archivo ${headerPath}`);
             }
             return response.text();
@@ -22,13 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(htmlContent => {
             // Inserta el HTML en el contenedor
             headerContainer.innerHTML = htmlContent;
-            // Opcional: Agregar console.log para verificar
-            // console.log('Header cargado exitosamente.'); 
+            
+            // ¡IMPORTANTE! Llamar a la función después de que el HTML ha sido insertado
+            resaltarEnlaceActivo(); 
         })
         .catch(error => {
             console.error('⚠️ Error en la carga del Header:', error.message);
-            // Opcional: Insertar un mensaje de fallback en la página
-            // headerContainer.innerHTML = '<h1>Error al cargar el menú de navegación.</h1>';
         });
 });
-
