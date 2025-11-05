@@ -29,3 +29,10 @@ img {
     transform: translateY(-5px); /* Pequeño efecto al pasar el mouse */
 }
 
+/* Ejemplo en tu archivo estilos.css */
+
+.cta-a-whatsapp .fa-whatsapp {
+    font-size: 1.2em; /* Hace el ícono un poco más grande que el texto del botón */
+    margin-right: 5px; /* Crea un pequeño espacio entre el ícono y la palabra "WhatsApp" */
+    color: #25D366; /* Podrías darle el color oficial de WhatsApp */
+}
