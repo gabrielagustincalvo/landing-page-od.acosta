@@ -36,6 +36,10 @@ ul, li {
     border-radius: var(--border-r);
 }
 
+.cta-a:hover {
+    background-color: #00296d;
+}
+
 h1 {
     font-size: 2.8rem;
 }
@@ -106,20 +110,30 @@ img {
 /* Banner */
 
 .hero-section {
-    height: 70vh;
-    background: url(/assets/img/image6.1.2.jpeg);
+    height: 70vh; 
+    min-height: 500px; 
+    width: 100%;
+    position: relative; 
+    background-image: url('/assets/img/image6.1.2.jpeg');
+    background-color: #333;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: #616161;
-    background-blend-mode: multiply;
-    display: flex;
-    align-items: center;
 }
 
-.wrap-hero-section {
-    color: #fff;
-    padding: 10%;
+/* Tipografía Responsiva */
+.hero-section p.lead {
+    font-size: 1.25rem; 
+    line-height: 1.5; 
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 400px;
+    }
+    .hero-section p.lead {
+        font-size: 1rem; 
+    }
 }
 
 /* ======================================================= */
@@ -163,17 +177,9 @@ img {
 .wrap-text-column p {
     padding-bottom: 1rem;
     line-height: 1.6; /* Mejora la legibilidad */
-    color: #444; /* Color de texto más suave */
+    color: #000000; /* Color de texto más suave */
 }
 
-/* ⚠️ REGLAS ELIMINADAS/IGNORADAS: 
-   Las siguientes reglas fueron ignoradas porque no tienes el contenedor 
-   .wrap-two-column en tu index.html. Las estamos eliminando de tu CSS para evitar confusión.
-
-.wrap-two-column { ... }
-.wrap-img_two-column { ... }
-.wrap-img_two-column:nth-child(2) { ... }
-*/
 
 /* ======================================================= */
 /* SECCIÓN TRATAMIENTOS - OPTIMIZADA PARA BOOTSTRAP GRID */
@@ -181,52 +187,39 @@ img {
 
 /* Contenedor principal de la sección */
 .section-tratamientos-section {
-    padding: 60px 15px; /* Más padding para que respire */
-    max-width: 1200px;
-    margin: 0 auto;
-    /* Eliminamos el display: flex; aquí, ya que el contenido usa .container */
-}
-
-/* Título de la sección */
-.section-tratamientos-section .wrap-title-section h2 {
-    text-align: center;
-    margin-bottom: 50px; /* Más espacio para separar del contenido */
-    font-weight: 700;
+    padding: 60px 15px;  
 }
 
 /* Estilos para el elemento Tarjeta (el <a>) */
 .item-tratamientos-section {
-    display: block; /* Mantiene el enlace como bloque */
+    display: block; 
     text-decoration: none;
     color: inherit;
-    border: 1px solid #e0e0e0; /* Borde muy suave, ya que ya tiene sombra */
-    /* Usamos 'var(--border-r)' para el redondeo consistente */
+    border: 1px solid #e0e0e0; 
     border-radius: var(--border-r); 
-    
-    /* Efecto de transición para el hover */
     transition: all 0.3s ease-in-out; 
 }
 
 /* 🚀 MEJORA ESTÉTICA: EFECTO HOVER */
 .item-tratamientos-section:hover {
-    transform: translateY(-5px); /* Se levanta un poco */
-    box-shadow: 0 10px 20px rgba(41, 119, 213, 0.2); /* Sombra con color principal */
-    border-color: var(--main-c); /* Resaltamos el borde */
+    transform: translateY(-5px); 
+    /* Sombra con color principal */
+    box-shadow: 0 10px 20px rgba(41, 119, 213, 0.2); 
+    border-color: var(--main-c); 
 }
 
 /* Estilos de la IMAGEN dentro de la Tarjeta */
 .item-tratamientos-section img {
     width: 100%;
-    /* Mantenemos un alto fijo o un aspect-ratio para uniformidad */
-    height: 220px; 
-    object-fit: cover; /* Asegura que la imagen cubra sin estirarse */
+    /* Aspect-ratio para uniformidad responsiva */
+    aspect-ratio: 4 / 3; 
+    object-fit: cover; 
     margin-bottom: 15px;
-    /* La clase 'rounded' de Bootstrap ya la redondea ligeramente */
 }
 
 /* Estilos de la Tipografía en la Tarjeta */
 .item-tratamientos-section h3 {
-    color: var(--main-c); /* Título del tratamiento en el color principal */
+    color: var(--main-c); 
     font-size: 1.5rem;
     margin-bottom: 8px;
 }
@@ -234,30 +227,24 @@ img {
 .item-tratamientos-section p {
     font-size: 1rem;
     color: #555;
+    /* Añadimos line-height para mejor lectura */
+    line-height: 1.4; 
 }
 
-/* ⚠️ REGLAS ELIMINADAS: */
-/*
-.wrap-tratamientos-section y las reglas flex: 1; min-width: 250px; 
-fueron eliminadas porque el diseño de 3 columnas lo manejan las clases .col-lg-4 de Bootstrap.
-*/
-
-
-
-
-
-
-
-/* Si quieres que los "cards" de tratamientos se vean bien */
-.item-tratamientos-section {
-    display: block; /* Asegura que el enlace ocupe todo el espacio de la columna */
-    color: #333; /* Color de texto por defecto */
-    transition: transform 0.3s;
+/* Media Query para mejorar el padding en móviles */
+@media (max-width: 576px) {
+    /* Reducir el padding general de la sección en móvil */
+    .section-tratamientos-section {
+        padding: 40px 10px; 
+    }
 }
 
-.item-tratamientos-section:hover {
-    transform: translateY(-5px); /* Pequeño efecto al pasar el mouse */
-}
+
+
+
+
+
+
 
 
 
