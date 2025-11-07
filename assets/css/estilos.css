@@ -293,21 +293,6 @@ img {
 }
 
 /** Consultorios ubicados en **/
-
-/** Consultorios ubicados en - Optimizado para Bootstrap **/
- 
-.location {
-    /* El contenedor (.container) y el padding vertical (py-5) en el HTML 
-       ya gestionan el ancho y el espaciado principal. */
-}
- 
-/* CLASE ELIMINADA: .wrap-two-column-location es redundante, 
-   el layout es manejado por .row y .col-* de Bootstrap. */
-
-/* CLASE SIMPLIFICADA: .location-item */
-.location-item {
-    /* text-align: center; se usa con la clase de Bootstrap .text-center en el HTML. */
-}
  
 /* Estilos para el mapa (principalmente para asegurar que el iframe se ajuste) */
 .location-item .mapa {
