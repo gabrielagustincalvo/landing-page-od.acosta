@@ -275,12 +275,6 @@ img {
 
 /** Contactate ya **/
 
-/** Contactate ya - Código Simplificado con Bootstrap **/
-
-/* 1. Eliminamos .contactate y .contactate-ya del CSS, ya que sus estilos
-   (max-width, margin, padding, background-color, border-radius) 
-   fueron manejados por las clases de Bootstrap en el HTML. */
-
 /* 2. Estilo Único del Botón de WhatsApp */
 .cta-a-whatsapp {
     /* El botón ya tiene padding, font-weight, y border-radius por las clases btn y btn-lg. */
@@ -297,6 +291,49 @@ img {
     background-color: #128C7E; /* Tono más oscuro de WhatsApp */
     color: #fff; /* Asegurar que el texto se mantenga blanco */
 }
+
+/** Consultorios ubicados en **/
+
+/** Consultorios ubicados en - Optimizado para Bootstrap **/
+ 
+.location {
+    /* El contenedor (.container) y el padding vertical (py-5) en el HTML 
+       ya gestionan el ancho y el espaciado principal. */
+}
+ 
+/* CLASE ELIMINADA: .wrap-two-column-location es redundante, 
+   el layout es manejado por .row y .col-* de Bootstrap. */
+
+/* CLASE SIMPLIFICADA: .location-item */
+.location-item {
+    /* text-align: center; se usa con la clase de Bootstrap .text-center en el HTML. */
+}
+ 
+/* Estilos para el mapa (principalmente para asegurar que el iframe se ajuste) */
+.location-item .mapa {
+    /* El margin-top ya está cubierto si usas mb-3 en el párrafo superior. */
+    overflow: hidden; /* Buena práctica: Asegura que el contenido interno no se salga */
+    /* border-radius se maneja con la clase 'rounded' o 'rounded-3' en el HTML si usas 'card'. */
+}
+ 
+/* Estilo para asegurar que el contenido dentro del .mapa (iframe, div, etc.) ocupe 100% */
+.location-item iframe,
+.location-item .mapa > * {
+    width: 100%; 
+    /* La altura se define con style="height: 250px;" en el div.mapa del HTML. */
+    height: 100%; 
+    display: block;
+}
+ 
+/* CLASE SIMPLIFICADA: .location-item p */
+.location-item p {
+    /* font-weight: bold; se reemplazó por la clase Bootstrap fw-bold en el HTML. */
+    /* margin-bottom: 10px; se reemplazó por la clase Bootstrap mb-3 en el HTML. */
+    margin-bottom: 0; /* Aseguramos que no haya un margen residual si el mb-3 se aplica solo una vez. */
+}
+
+
+
 
 
 
