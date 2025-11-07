@@ -239,6 +239,41 @@ img {
     }
 }
 
+/** Medios de pago **/
+
+/* Estilos para la lista (Centrado y Alineación de Iconos) */
+.lista-iconos-pagos {
+    /* Clave para centrar la lista como un bloque */
+    display: inline-block; 
+    /* Quitamos los puntos de lista */
+    list-style: none;
+    padding-left: 0; 
+}
+
+.icono-efectivo {
+    color: #2E8B57; /* Ejemplo: Verde Oscuro */
+}
+
+.icono-transferencias {
+    color: #4169E1; /* Ejemplo: Azul Rey (Royal Blue) */
+}
+
+.icono-debito {
+    color: #000000; /* Ejemplo: Naranja Oscuro */
+}
+
+.icono-credito {
+    color: #000000; /* Ejemplo: Rojo Carmesí (Crimson) */
+}
+
+.lista-iconos-pagos .fa-solid {
+    /* Ajuste fino para la alineación visual perfecta de los iconos */
+    font-size: 1.2em;
+    width: 25px; 
+    text-align: center;
+}
+
+
 
 
 
