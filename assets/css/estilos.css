@@ -273,6 +273,32 @@ img {
     text-align: center;
 }
 
+/** Contactate ya **/
+
+/** Contactate ya - Código Simplificado con Bootstrap **/
+
+/* 1. Eliminamos .contactate y .contactate-ya del CSS, ya que sus estilos
+   (max-width, margin, padding, background-color, border-radius) 
+   fueron manejados por las clases de Bootstrap en el HTML. */
+
+/* 2. Estilo Único del Botón de WhatsApp */
+.cta-a-whatsapp {
+    /* El botón ya tiene padding, font-weight, y border-radius por las clases btn y btn-lg. */
+    
+    /* Personalizamos el color de fondo de WhatsApp (verde oficial) */
+    background-color: #25D366; 
+    color: #fff; /* Aseguramos que el texto sea blanco */
+    font-weight: bold; /* Mantener la negrita */
+    font-size: 1.2rem; /* Mantener el tamaño de fuente */
+    border: none; /* Eliminar borde si el navegador lo añade */
+}
+/* Estilo Hover */
+.cta-a-whatsapp:hover {
+    background-color: #128C7E; /* Tono más oscuro de WhatsApp */
+    color: #fff; /* Asegurar que el texto se mantenga blanco */
+}
+
+
 
 
 
