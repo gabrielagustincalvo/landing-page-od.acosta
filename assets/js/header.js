@@ -2,54 +2,67 @@
 
 function resaltarEnlaceActivo() {
     // 1. Obtener la ruta de la página actual (ej. /pages/acercademi.html)
-    // Se usa 'pathname' que retorna la parte de la URL sin el dominio ni parámetros.
     let rutaActual = window.location.pathname;
 
-    // Si estás en la raíz (index.html), window.location.pathname puede ser solo '/',
-    // lo ajustamos para que coincida con el href:
+    // Ajustar para que la raíz coincida con /index.html
     if (rutaActual === '/') {
         rutaActual = '/index.html';
     }
-    // Para cualquier página en /pages/ (ej. /pages/acercademi.html) se buscará la coincidencia.
     
     // 2. Iterar sobre todos los enlaces de navegación
+    // NOTA: Esta función DEBE llamarse después de que el header.html ha sido insertado
     const enlaces = document.querySelectorAll('.navbar-nav .nav-link');
     
+    if (enlaces.length === 0) {
+        console.warn('No se encontraron enlaces de navegación con las clases .navbar-nav .nav-link. Asegúrate de que header.html contiene el navbar de Bootstrap.');
+        return;
+    }
+
     enlaces.forEach(enlace => {
-        // Obtenemos el atributo href de cada enlace y lo normalizamos
         const hrefEnlace = enlace.getAttribute('href').toLowerCase();
         
         // 3. Comparar la ruta actual con el href del enlace
+        // Usamos includes() para manejar casos como /tratamientos/odontologiaconservadora.html
         if (rutaActual.includes(hrefEnlace)) {
-            // Eliminar cualquier 'active' previo (aunque el forEach es suficiente si no hay errores)
-            // enlace.classList.remove('active');
-            
             // 4. Agregar la clase 'active' al enlace correspondiente
             enlace.classList.add('active');
-            // Opcional: Agregar la clase 'active' también al <li> padre (si lo necesita Bootstrap o CSS)
-            enlace.closest('.nav-item').classList.add('active'); 
+            
+            // Si usas Bootstrap, a veces necesitas la clase 'active' en el <li> padre
+            const navItem = enlace.closest('.nav-item');
+            if (navItem) {
+                navItem.classList.add('active'); 
+            }
         } else {
-             // Opcional: Asegurarse de quitar 'active' de otros enlaces
+            // Asegurarse de quitar 'active' de otros enlaces
             enlace.classList.remove('active');
-            enlace.closest('.nav-item').classList.remove('active');
+            const navItem = enlace.closest('.nav-item');
+            if (navItem) {
+                navItem.classList.remove('active');
+            }
         }
     });
 }
 
+// -----------------------------------------------------------
 
 document.addEventListener('DOMContentLoaded', () => {
+    // **ESTA RUTA DEBE SER ABSOLUTA A LA RAÍZ DEL PROYECTO**
+    // Según tu estructura: LANDING PAGE OD ACOSTA/includes/header.html
     const headerPath = '/includes/header.html'; 
+    
     const headerContainer = document.getElementById('header-container');
 
     if (!headerContainer) {
-        console.warn('El contenedor del encabezado (<div id="header-container"></div>) no fue encontrado.');
+        // Esta advertencia es útil si olvidas el div en algún HTML
+        console.error('⚠️ El contenedor del encabezado (<div id="header-container"></div>) no fue encontrado. El Header no se cargará.');
         return; 
     }
 
     fetch(headerPath)
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Error ${response.status}: No se pudo cargar el archivo ${headerPath}`);
+                // Capturamos el error 404 aquí
+                throw new Error(`Error ${response.status}: No se pudo cargar el archivo ${headerPath}. **Asegúrate de que el archivo existe en la carpeta /includes/** y que estás usando un servidor web.`);
             }
             return response.text();
         })
@@ -61,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             resaltarEnlaceActivo(); 
         })
         .catch(error => {
-            console.error('⚠️ Error en la carga del Header:', error.message);
+            // Muestra el error de fetch, típicamente por 404 o por no usar servidor web (CORS)
+            console.error('❌ Error en la carga del Header (FETCH falló):', error.message);
         });
 });
