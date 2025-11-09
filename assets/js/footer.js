@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3">
                             <h5 class="text-uppercase mb-4 font-weight-bold text-primary">Odontología Acosta</h5>
                             
-                            <img src="/assets/img/logo-horizontal1.jpeg" alt="Logo Odontología Acosta" class="img-fluid mb-3" style="max-width: 200px;">
+                            <img src="/assets/img/logo-horizontal1.jpeg" alt="Logo Odontología Acosta" class="logo-header" style="max-width: 200px;">
                             
                             <p>
                                 <i class="fas fa-envelope mr-3"></i> odafacosta@email.com
@@ -50,11 +50,12 @@ document.addEventListener("DOMContentLoaded", function() {
                     
                     <hr class="my-3" />
 
-                    <div class="row d-flex justify-content-center align-items-center">
-                        <div class="col-md-7 col-lg-8">
-                            <p class="text-center text-md-start">© ${new Date().getFullYear()} Copyright | 
-                                <a href="index.html" style="text-decoration: none;">
-                                    <strong class="text-primary">Odontología Acosta</strong>
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="text-center mb-0">
+                                © ${new Date().getFullYear()} Copyright | 
+                                <a href="/index.html" class="footer-copyright-link">
+                                    <strong>Odontología Acosta</strong>
                                 </a>
                             </p>
                         </div>

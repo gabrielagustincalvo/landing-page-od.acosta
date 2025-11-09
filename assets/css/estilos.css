@@ -34,6 +34,7 @@ ul, li {
     background-color: var(--main-c);
     padding: 0.5rem 1rem;
     border-radius: var(--border-r);
+    display: inline-block; /* Asegura que el padding funcione bien */
 }
 
 .cta-a:hover {
@@ -76,35 +77,29 @@ h6 {
     border-radius: 10px;
 }
 
-/* Añadir esta regla para asegurar que las imágenes sean responsive */
+/* Asegurar que las imágenes sean responsive */
 img {
     max-width: 100%;
-    height: auto; /* Mantiene la proporción */
+    height: auto; 
 }
 
-/* 1. Estilo base (el color del enlace antes del hover) */
+/* 1. Estilo base */
 .navbar-nav .nav-link {
-    /* Define el color base de los enlaces para consistencia */
-    color: #000000; /* Ejemplo: Negro */
-    /* Agrega una transición suave para el efecto hover */
+    color: #000000; 
     transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out; 
 }
 
 /* 2. Estilo al pasar el cursor (HOVER) */
 .navbar-nav .nav-link:hover {
-    /* Cambiar color al pasar el ratón */
-    color: #2977d5; /* Ejemplo: Azul de Bootstrap */
-    /* Opcional: Añadir una línea inferior para un efecto más moderno */
-    border-bottom: 2px solid #2977d5;
-    /* Ajustar padding para compensar la línea inferior */
+    color: var(--main-c); 
+    border-bottom: 2px solid var(--main-c);
     padding-bottom: 6px !important; 
 }
 
-/* 3. Opcional: Estilo para el enlace ACTIVO (la página en la que estás) */
-/* Usa una clase adicional en el <li> o <a> de la página activa si la tienes */
+/* 3. Estilo para el enlace ACTIVO */
 .navbar-nav .nav-item .active {
-    color: #2977d5; /* Color azul para indicar la página actual */
-    font-weight: bold; /* Hacer el texto negrita */
+    color: #2977d5; 
+    font-weight: bold; 
 }
 
 /* Banner */
@@ -119,6 +114,11 @@ img {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+/* Clase para manejar el z-index, movido de inline a CSS */
+.hero-content-wrap {
+    z-index: 2;
 }
 
 /* Tipografía Responsiva */
@@ -137,33 +137,22 @@ img {
 }
 
 /* ======================================================= */
-/* SECCIÓN "ACERCA DE MI" - BASADA EN BOOTSTRAP GRID */
+/* SECCIÓN "ACERCA DE MI" */
 /* ======================================================= */
 
 .two-column-section {
-    padding: 40px 15px;
+    /* El padding se maneja ahora con p-5 en el HTML */
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Mejora Estética: Título */
-.wrap-title-section h2 {
-    text-align: center;
-    margin-bottom: 40px; /* Más espacio */
-    font-weight: 700; /* Título más audaz */
-}
-
 /* Mejora Estética: Estilos de la IMAGEN (Aplica al img-fluid) */
-/* Selector para el contenedor de la imagen en Index (el col-12) */
-.two-column-section .col-md-6 img {
-    /* Estas reglas son NECESARIAS ya que la clase rounded-circle solo da border-radius */
+.two-column-section .rounded-circle {
     display: block;
     width: 100%;
     height: auto;
     object-fit: cover;
-    aspect-ratio: 1 / 1; /* ¡Fundamental para el círculo perfecto! */
-    
-    /* MEJORA: Añadir una sombra al círculo para un efecto 3D */
+    aspect-ratio: 1 / 1; /* ¡Círculo perfecto garantizado! */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
 }
 
@@ -171,24 +160,27 @@ img {
 .wrap-text-column h3 {
     padding: 0 0 1rem 0;
     margin: 0;
-    color: var(--main-c); /* Usa el color principal de tu marca */
+    color: var(--main-c);
+    font-weight: 600; 
 }
 
 .wrap-text-column p {
     padding-bottom: 1rem;
-    line-height: 1.6; /* Mejora la legibilidad */
-    color: #000000; /* Color de texto más suave */
+    line-height: 1.6; 
+    color: #000000; 
+}
+
+/* Ajuste para el texto en móvil */
+@media (max-width: 767px) {
+    .wrap-text-column.text-center {
+        text-align: center !important; 
+    }
 }
 
 
 /* ======================================================= */
-/* SECCIÓN TRATAMIENTOS - OPTIMIZADA PARA BOOTSTRAP GRID */
+/* SECCIÓN TRATAMIENTOS */
 /* ======================================================= */
-
-/* Contenedor principal de la sección */
-.section-tratamientos-section {
-    padding: 60px 15px;  
-}
 
 /* Estilos para el elemento Tarjeta (el <a>) */
 .item-tratamientos-section {
@@ -206,12 +198,12 @@ img {
     /* Sombra con color principal */
     box-shadow: 0 10px 20px rgba(41, 119, 213, 0.2); 
     border-color: var(--main-c); 
+    
 }
 
 /* Estilos de la IMAGEN dentro de la Tarjeta */
 .item-tratamientos-section img {
     width: 100%;
-    /* Aspect-ratio para uniformidad responsiva */
     aspect-ratio: 4 / 3; 
     object-fit: cover; 
     margin-bottom: 15px;
@@ -227,47 +219,105 @@ img {
 .item-tratamientos-section p {
     font-size: 1rem;
     color: #555;
-    /* Añadimos line-height para mejor lectura */
     line-height: 1.4; 
 }
 
-/* Media Query para mejorar el padding en móviles */
-@media (max-width: 576px) {
-    /* Reducir el padding general de la sección en móvil */
-    .section-tratamientos-section {
-        padding: 40px 10px; 
-    }
+/* Estilo del Contenedor del Dropdown (Submenú) */
+.navbar-nav .dropdown-menu {
+    /* Fondo más sólido y moderno (Bootstrap por defecto es blanco) */
+    background-color: #ffffff;
+    /* Sombra para efecto "flotante" */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* Borde redondeado coherente con tu estilo (var(--border-r) es 1.2rem) */
+    border-radius: var(--border-r); 
+    /* Eliminar el borde predeterminado */
+    border: none;
+    /* Asegurar que el menú no sea demasiado ancho */
+    min-width: 250px; 
+    /* Margen superior para separarlo un poco del botón */
+    margin-top: 5px; 
 }
+
+/* Estilo para los Ítems (Enlaces) del Dropdown */
+.navbar-nav .dropdown-item {
+    /* Estilo para los Ítems (Enlaces) del Dropdown - AJUSTADO PARA EVITAR MOVIMIENTO */
+    /* Sumamos: 6px (padding final) + 2px (borde) + un poco más para el espacio visible */
+    padding: 10px 18px 8px 18px; 
+ 
+    font-size: 1rem;
+    /* Aseguramos que el color sea negro en estado normal */
+    color: #000000;
+    
+    /* Agregamos la transición base aquí para suavizar el cambio */
+    transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out; 
+}
+
+/* 🚀 CORRECCIÓN: Estilo al pasar el cursor (HOVER) en los Ítems (sin fondo gris, línea ajustada) */
+.navbar-nav .dropdown-item:hover,
+.navbar-nav .dropdown-item:focus {
+    /* Anular el fondo gris de Bootstrap */
+    background-color: transparent !important; 
+    
+    color: var(--main-c); 
+    
+    /* Aplicar la línea inferior */
+    border-bottom: 2px solid var(--main-c);
+    
+    /* Ajustar padding para que la línea se vea bien */
+    padding-bottom: 6px !important;
+    display: inline-block;
+    width: auto;
+}
+
+/* ⚠️ Corrección para el nav-link del Dropdown (enlace "Tratamientos") */
+/* 1. Estilo base (anulación del borde por defecto del nav-link:hover) */
+.navbar-nav .dropdown .nav-link {
+    border-bottom: none; 
+    padding-bottom: 0.5rem !important;
+}
+
+/* 🚀 Aplicar el HOVER normal al enlace "Tratamientos" (Menú Principal) */
+.navbar-nav .dropdown .nav-link:hover {
+    color: var(--main-c); 
+    border-bottom: 2px solid var(--main-c) !important; /* Forzar el borde inferior */
+    padding-bottom: 6px !important; 
+}
+
+/* Estilo para el ítem activo si lo implementas */
+.navbar-nav .dropdown-item.active {
+    background-color: var(--main-c);
+    color: #ffffff;
+}
+
+
 
 /** Medios de pago **/
 
 /* Estilos para la lista (Centrado y Alineación de Iconos) */
 .lista-iconos-pagos {
-    /* Clave para centrar la lista como un bloque */
     display: inline-block; 
-    /* Quitamos los puntos de lista */
     list-style: none;
     padding-left: 0; 
 }
 
+/* Colores de Iconos Mejorados y Profesionales */
 .icono-efectivo {
-    color: #2E8B57; /* Ejemplo: Verde Oscuro */
+    color: #179E4B; /* Verde de Efectivo */
 }
 
 .icono-transferencias {
-    color: #4169E1; /* Ejemplo: Azul Rey (Royal Blue) */
+    color: var(--main-c); /* Azul principal */
 }
 
 .icono-debito {
-    color: #000000; /* Ejemplo: Naranja Oscuro */
+    color: #5A6268; /* Gris Oscuro */
 }
 
 .icono-credito {
-    color: #000000; /* Ejemplo: Rojo Carmesí (Crimson) */
+    color: #DC3545; /* Rojo de Crédito */
 }
 
 .lista-iconos-pagos .fa-solid {
-    /* Ajuste fino para la alineación visual perfecta de los iconos */
     font-size: 1.2em;
     width: 25px; 
     text-align: center;
@@ -275,66 +325,55 @@ img {
 
 /** Contactate ya **/
 
-/* 2. Estilo Único del Botón de WhatsApp */
+/* Estilo Único del Botón de WhatsApp */
 .cta-a-whatsapp {
-    /* El botón ya tiene padding, font-weight, y border-radius por las clases btn y btn-lg. */
-    
-    /* Personalizamos el color de fondo de WhatsApp (verde oficial) */
-    background-color: #25D366; 
-    color: #fff; /* Aseguramos que el texto sea blanco */
-    font-weight: bold; /* Mantener la negrita */
-    font-size: 1.2rem; /* Mantener el tamaño de fuente */
-    border: none; /* Eliminar borde si el navegador lo añade */
+    background-color: #25D366 !important; /* Verde oficial de WhatsApp */
+    color: #fff !important; 
+    font-weight: bold; 
+    font-size: 1.2rem; 
+    border: none; 
 }
 /* Estilo Hover */
 .cta-a-whatsapp:hover {
-    background-color: #128C7E; /* Tono más oscuro de WhatsApp */
-    color: #fff; /* Asegurar que el texto se mantenga blanco */
+    background-color: #128C7E !important; 
+    color: #fff !important; 
 }
 
 /** Consultorios ubicados en **/
  
 /* Estilos para el mapa (principalmente para asegurar que el iframe se ajuste) */
 .location-item .mapa {
-    /* El margin-top ya está cubierto si usas mb-3 en el párrafo superior. */
-    overflow: hidden; /* Buena práctica: Asegura que el contenido interno no se salga */
-    /* border-radius se maneja con la clase 'rounded' o 'rounded-3' en el HTML si usas 'card'. */
+    overflow: hidden; 
 }
  
-/* Estilo para asegurar que el contenido dentro del .mapa (iframe, div, etc.) ocupe 100% */
+/* Estilo para asegurar que el contenido dentro del .mapa ocupe 100% */
 .location-item iframe,
 .location-item .mapa > * {
     width: 100%; 
-    /* La altura se define con style="height: 250px;" en el div.mapa del HTML. */
     height: 100%; 
     display: block;
 }
- 
-/* CLASE SIMPLIFICADA: .location-item p */
-.location-item p {
-    /* font-weight: bold; se reemplazó por la clase Bootstrap fw-bold en el HTML. */
-    /* margin-bottom: 10px; se reemplazó por la clase Bootstrap mb-3 en el HTML. */
-    margin-bottom: 0; /* Aseguramos que no haya un margen residual si el mb-3 se aplica solo una vez. */
+
+/* ======================================================= */
+/* FOOTER */
+/* ======================================================= */
+
+/* Estilo para los enlaces del footer en la navegación */
+footer .text-white {
+    transition: color 0.3s ease-in-out;
 }
 
+footer .text-white:hover {
+    color: var(--main-c) !important;
+}
 
+/* Estilo específico para el enlace del copyright */
+.footer-copyright-link {
+    color: var(--main-c) !important;
+    text-decoration: none;
+    transition: opacity 0.3s ease-in-out;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* Ejemplo en tu archivo estilos.css */
-
-.cta-a-whatsapp .fa-whatsapp {
-    font-size: 1.2em; /* Hace el ícono un poco más grande que el texto del botón */
-    margin-right: 5px; /* Crea un pequeño espacio entre el ícono y la palabra "WhatsApp" */
-    color: #25D366; /* Podrías darle el color oficial de WhatsApp */
+.footer-copyright-link:hover {
+    opacity: 0.8;
 }
