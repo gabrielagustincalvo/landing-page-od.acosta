@@ -47,11 +47,12 @@ h1 {
 
 h2 {
     font-size: 2.5rem;
-    color: #124b7f;
+    color: var(--main-c);
 }
 
 h3 {
     font-size: 2.2rem;
+    color: var(--main-c);
 }
 
 h4 {
@@ -218,6 +219,16 @@ img {
     font-size: 1rem;
     color: #555;
     line-height: 1.4; 
+}
+
+/* ESPECÍFICO PARA PÁGINAS DE TRATAMIENTOS (Bruxismo, etc.) */
+
+/* Estilo para imágenes de detalle en 2 columnas (ej. placas miorrelajantes) */
+.col-lg-6.order-lg-2 .row.g-3 img {
+    width: 100%; 
+    display: block; 
+    border-radius: var(--border-r); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 /* Estilo del Contenedor del Dropdown (Submenú) */
