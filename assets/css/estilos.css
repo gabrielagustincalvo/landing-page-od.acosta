@@ -137,31 +137,29 @@ img {
 }
 
 /* ======================================================= */
-/* SECCIÓN "ACERCA DE MI" */
+/* SECCIÓN "ACERCA DE MI" (Optimizado con Bootstrap) */
 /* ======================================================= */
 
 .two-column-section {
-    /* El padding se maneja ahora con p-5 en el HTML */
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Mejora Estética: Estilos de la IMAGEN (Aplica al img-fluid) */
-.two-column-section .rounded-circle {
+/* Estilo para la IMAGEN (Aplica a la imagen en la sección) */
+.two-column-section img {
+    /* Usar border-radius de la variable CSS para ser coherente */
+    border-radius: var(--border-r); 
     display: block;
     width: 100%;
     height: auto;
     object-fit: cover;
-    aspect-ratio: 1 / 1; /* ¡Círculo perfecto garantizado! */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
 }
 
-/* Mejora Estética: Contenido de Texto */
+/* Mejora Estética: Contenido de Texto Principal */
 .wrap-text-column h3 {
-    padding: 0 0 1rem 0;
-    margin: 0;
     color: var(--main-c);
-    font-weight: 600; 
+    font-weight: bold; 
+    margin-bottom: 1rem; 
 }
 
 .wrap-text-column p {
@@ -170,11 +168,11 @@ img {
     color: #000000; 
 }
 
-/* Ajuste para el texto en móvil */
-@media (max-width: 767px) {
-    .wrap-text-column.text-center {
-        text-align: center !important; 
-    }
+/* Estilo para los títulos de Misión y Atención Personalizada */
+.mision h3, 
+.atencion-personalizada h3 {
+    color: var(--main-c);
+    font-size: 2.2rem; 
 }
 
 

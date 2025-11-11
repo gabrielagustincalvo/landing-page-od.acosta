@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function() {
                             <h5 class="text-uppercase mb-4 font-weight-bold text-primary">Consultorios</h5>
                             <p>Avenida Villarino 496, Viedma</p>
                             <p>Artémides Zatti 350, Viedma</p>
-                            <p><a href="#location" class="text-white" style="text-decoration: none;">Ver en el mapa</a></p>
                         </div>
 
                     </div>
