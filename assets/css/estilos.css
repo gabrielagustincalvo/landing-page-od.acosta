@@ -223,6 +223,14 @@ img {
 
 /* ESPECÍFICO PARA PÁGINAS DE TRATAMIENTOS (Bruxismo, etc.) */
 
+.col-lg-6.order-lg-2 > img {
+    max-width: 80%; 
+    height: auto; 
+    /* El centrado debe hacerse en el contenedor para que funcione bien */
+    display: block; /* Necesario para que el margin: 0 auto funcione en la imagen */
+    margin: 0 auto; 
+}
+
 /* Estilo para imágenes de detalle en 2 columnas (ej. placas miorrelajantes) */
 .col-lg-6.order-lg-2 .row.g-3 img {
     width: 100%; 
@@ -230,6 +238,16 @@ img {
     border-radius: var(--border-r); 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
+
+/* NUEVO ESTILO: Reduce el ancho de la columna contenedora y la centra */
+.col-lg-6.order-lg-2 .col-12 {
+    max-width: 60%; /* Hazlas más chicas (ajusta este valor) */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilo del Contenedor del Dropdown (Submenú) */
+/* ... resto de tu CSS ... */
 
 /* Estilo del Contenedor del Dropdown (Submenú) */
 .navbar-nav .dropdown-menu {

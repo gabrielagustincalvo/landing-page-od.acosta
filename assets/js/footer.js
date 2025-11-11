@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             <img src="/assets/img/logo-horizontal1.jpeg" alt="Logo Odontología Acosta" class="logo-header" style="max-width: 200px;">
                             
                             <p>
-                                <i class="fas fa-envelope mr-3"></i> odafacosta@email.com
+                                <i class="fas fa-envelope mr-3"></i> odafacosta@gmail.com
                             </p>
                             <p>
                                 <i class="fab fa-whatsapp mr-3"></i> +54 9 2984 40-1229
