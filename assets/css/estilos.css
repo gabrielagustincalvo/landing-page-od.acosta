@@ -185,6 +185,7 @@ img {
     display: block; 
     text-decoration: none;
     color: inherit;
+    /* La tarjeta de Bootstrap ya tiene border, pero mantienes este para el hover */
     border: 1px solid #e0e0e0; 
     border-radius: var(--border-r); 
     transition: all 0.3s ease-in-out; 
@@ -196,7 +197,6 @@ img {
     /* Sombra con color principal */
     box-shadow: 0 10px 20px rgba(41, 119, 213, 0.2); 
     border-color: var(--main-c); 
-    
 }
 
 /* Estilos de la IMAGEN dentro de la Tarjeta */
@@ -204,7 +204,7 @@ img {
     width: 100%;
     aspect-ratio: 4 / 3; 
     object-fit: cover; 
-    margin-bottom: 15px;
+    margin-bottom: 15px; /* Separación de la imagen al texto */
 }
 
 /* Estilos de la Tipografía en la Tarjeta */
