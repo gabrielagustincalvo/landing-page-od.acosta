@@ -221,7 +221,7 @@ img {
     line-height: 1.4; 
 }
 
-/* ESPECÍFICO PARA PÁGINAS DE TRATAMIENTOS (Bruxismo, etc.) */
+/* ESPECÍFICO PARA PÁGINAS DE TRATAMIENTOS */
 
 .col-lg-6.order-lg-2 > img {
     max-width: 80%; 
@@ -246,8 +246,13 @@ img {
     margin-right: auto;
 }
 
-/* Estilo del Contenedor del Dropdown (Submenú) */
-/* ... resto de tu CSS ... */
+.col-lg-6.order-lg-2 .col-6 {
+     max-width: 60%; /* Hazlas más chicas (ajusta este valor) */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
 
 /* Estilo del Contenedor del Dropdown (Submenú) */
 .navbar-nav .dropdown-menu {
