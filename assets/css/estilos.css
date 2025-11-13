@@ -288,7 +288,7 @@ img {
 .navbar-nav .dropdown-item:hover,
 .navbar-nav .dropdown-item:focus {
     /* Anular el fondo gris de Bootstrap */
-    background-color: transparent !important; 
+    background-color: #f7f7f7; 
     
     color: var(--main-c); 
     
