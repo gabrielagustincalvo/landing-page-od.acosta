@@ -3,7 +3,7 @@
     --border-r:1.2rem;
 }
 
-/* Estilos generales */
+/* ESTILOS GENERALES */
 
 html * {
     margin: 0;
@@ -68,7 +68,7 @@ h6 {
 }
 
 
-/* Header */
+/* HEADER */
 
 /* Mantener el logo responsive y con un límite de tamaño */
 .logo-header {
@@ -103,7 +103,7 @@ img {
     font-weight: bold; 
 }
 
-/* Banner */
+/* BANNER HERO SECTION */
 
 .hero-section {
     height: 70vh; 
@@ -137,18 +137,16 @@ img {
     }
 }
 
-/* ======================================================= */
-/* SECCIÓN "ACERCA DE MI" (Optimizado con Bootstrap) */
-/* ======================================================= */
+/* SECCIÓN "ACERCA DE MI" */
+
 
 .two-column-section {
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Estilo para la IMAGEN (Aplica a la imagen en la sección) */
+
 .two-column-section img {
-    /* Usar border-radius de la variable CSS para ser coherente */
     border-radius: var(--border-r); 
     display: block;
     width: 100%;
@@ -176,10 +174,7 @@ img {
     font-size: 2.2rem; 
 }
 
-
-/* ======================================================= */
-/* SECCIÓN TRATAMIENTOS */
-/* ======================================================= */
+/* SECCIÓN "TRATAMIENTOS" */
 
 /* Estilos para el elemento Tarjeta (el <a>) */
 .item-tratamientos-section {
@@ -231,7 +226,7 @@ img {
     margin: 0 auto; 
 }
 
-/* Estilo para imágenes de detalle en 2 columnas (ej. placas miorrelajantes) */
+/* Estilo para imágenes de detalle en 2 columnas (ej. placas miorrelajantes en la pagina "bruxismo") */
 .col-lg-6.order-lg-2 .row.g-3 img {
     width: 100%; 
     display: block; 
@@ -252,15 +247,12 @@ img {
     margin-right: auto;
 }
 
-
-
 /* Estilo del Contenedor del Dropdown (Submenú) */
 .navbar-nav .dropdown-menu {
     /* Fondo más sólido y moderno (Bootstrap por defecto es blanco) */
     background-color: #ffffff;
     /* Sombra para efecto "flotante" */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    /* Borde redondeado coherente con tu estilo (var(--border-r) es 1.2rem) */
     border-radius: var(--border-r); 
     /* Eliminar el borde predeterminado */
     border: none;
@@ -301,7 +293,6 @@ img {
     width: auto;
 }
 
-/* ⚠️ Corrección para el nav-link del Dropdown (enlace "Tratamientos") */
 /* 1. Estilo base (anulación del borde por defecto del nav-link:hover) */
 .navbar-nav .dropdown .nav-link {
     border-bottom: none; 
@@ -321,9 +312,7 @@ img {
     color: #ffffff;
 }
 
-
-
-/** Medios de pago **/
+/* SECCION "MEDIOS DE PAGO" */
 
 /* Estilos para la lista (Centrado y Alineación de Iconos) */
 .lista-iconos-pagos {
@@ -355,7 +344,7 @@ img {
     text-align: center;
 }
 
-/** Contactate ya **/
+/* SECCION "CONTACTATE YA */
 
 /* Estilo Único del Botón de WhatsApp */
 .cta-a-whatsapp {
@@ -371,7 +360,7 @@ img {
     color: #fff !important; 
 }
 
-/** Consultorios ubicados en **/
+/* SECCION "CONSULTORIOS UBICADOS EN..." */
  
 /* Estilos para el mapa (principalmente para asegurar que el iframe se ajuste) */
 .location-item .mapa {
@@ -386,9 +375,7 @@ img {
     display: block;
 }
 
-/* ======================================================= */
 /* FOOTER */
-/* ======================================================= */
 
 /* Estilo para los enlaces del footer en la navegación */
 footer .text-white {
