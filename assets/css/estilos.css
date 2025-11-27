@@ -400,3 +400,51 @@ footer .text-white:hover {
 .form {
     width: 500px;
 }
+
+/* ESTILOS PARA EL FORMULARIO */
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f6f7fb;
+  }
+  
+  .card {
+    background: #fff;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  }
+  
+  label {
+    display: block;
+    margin-top: 12px;
+    font-weight: 600;
+  }
+  
+  input,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #dfe4ee;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  
+  textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  .btn {
+    margin-top: 14px;
+    padding: 10px 16px;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+  }
