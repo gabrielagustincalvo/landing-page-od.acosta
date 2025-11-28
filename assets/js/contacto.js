@@ -13,13 +13,11 @@ const EMAILJS_TEMPLATE_ID = 'template_jnpf1kn';
 // Inicializacion de EMAIL JS 
 emailjs.init({
     publicKey: EMAILJS_PUBLIC_KEY,
-}); // Inicializa emal js con la key 
+}); // Inicializa email js con la key 
 
 // selectores 
 const form = document.getElementById("contact-form"); //FORMULARIO 
-const sendBtn = document.getElementById("envio"); // BOTON DE ENVIAR
-// const status = 
-
+const sendBtn = document.getElementById("envio"); // BOTON DE ENVIAR 
 
 // EVENTO DE ENVIO 
 // dos parametros: el evento, y la funcion que ejecuta ese evento 
@@ -30,12 +28,7 @@ form.addEventListener("submit", function(e){
 
     sendBtn.textContent = 'Enviando...'; 
     sendBtn.disabled = true; 
-    
-    
-    // preparemos la interfaz del boton para cuando se envie 
-    // sendBtn.disable = true; 
-
-
+     
     // ENVIO DESDE EMAIL JS
     emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
     // sendForm envia los datos del formulario a tu plantilla de emailjs 
@@ -51,7 +44,5 @@ form.addEventListener("submit", function(e){
         sendBtn.textContent = 'Enviar'; 
         sendBtn.disabled = false; 
     })
-
-
 
 });
