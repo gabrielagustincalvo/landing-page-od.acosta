@@ -99,8 +99,24 @@ img {
 
 /* 3. Estilo para el enlace ACTIVO */
 .navbar-nav .nav-item .active {
-    color: #2977d5; 
+    color: #2977d5 !important; 
     font-weight: bold; 
+    border-bottom: 2px solid var(--main-c);
+    padding-bottom: 6px !important;
+}
+
+@media (max-width: 768px) {
+    .logo-header {
+        max-width: 200px; /* Reducimos el logo en celulares */
+    }
+}
+
+/* Ajuste para que el subrayado en móvil no ocupe toda la pantalla */
+@media (max-width: 991px) {
+    .navbar-nav .nav-link {
+        display: inline-block; /* Hace que el link ocupe solo lo que mide el texto */
+        width: fit-content;    /* Asegura que el ancho se ajuste al contenido */
+    }
 }
 
 /* BANNER HERO SECTION */
@@ -306,10 +322,12 @@ img {
     padding-bottom: 6px !important; 
 }
 
-/* Estilo para el ítem activo si lo implementas */
-.navbar-nav .dropdown-item.active {
-    background-color: var(--main-c);
-    color: #ffffff;
+/* Esto fuerza que la línea aparezca cuando estás en la sección Tratamientos */
+.navbar-nav .dropdown .nav-link.active {
+    border-bottom: 2px solid var(--main-c) !important;
+    padding-bottom: 6px !important;
+    color: var(--main-c) !important;
+    font-weight: bold;
 }
 
 /* SECCION "MEDIOS DE PAGO" */
@@ -378,12 +396,14 @@ img {
 /* FOOTER */
 
 /* Estilo para los enlaces del footer en la navegación */
-footer .text-white {
+footer a.text-white {
     transition: color 0.3s ease-in-out;
+    text-decoration: none;
 }
 
-footer .text-white:hover {
+footer a.text-white:hover {
     color: var(--main-c) !important;
+    text-decoration: none;
 }
 
 /* Estilo específico para el enlace del copyright */
