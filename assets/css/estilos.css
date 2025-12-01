@@ -99,8 +99,8 @@ img {
 
 /* 3. Estilo para el enlace ACTIVO */
 .navbar-nav .nav-item .active {
-    color: #2977d5 !important; 
-    font-weight: bold; 
+    color: #2977d5; 
+    font-weight: bold;
     border-bottom: 2px solid var(--main-c);
     padding-bottom: 6px !important;
 }
@@ -322,12 +322,10 @@ img {
     padding-bottom: 6px !important; 
 }
 
-/* Esto fuerza que la línea aparezca cuando estás en la sección Tratamientos */
-.navbar-nav .dropdown .nav-link.active {
-    border-bottom: 2px solid var(--main-c) !important;
-    padding-bottom: 6px !important;
-    color: var(--main-c) !important;
-    font-weight: bold;
+/* Estilo para el ítem activo si lo implementas */
+.navbar-nav .dropdown-item.active {
+    background-color: var(--main-c);
+    color: #ffffff;
 }
 
 /* SECCION "MEDIOS DE PAGO" */
@@ -396,14 +394,12 @@ img {
 /* FOOTER */
 
 /* Estilo para los enlaces del footer en la navegación */
-footer a.text-white {
+footer .text-white {
     transition: color 0.3s ease-in-out;
-    text-decoration: none;
 }
 
-footer a.text-white:hover {
+footer .text-white:hover {
     color: var(--main-c) !important;
-    text-decoration: none;
 }
 
 /* Estilo específico para el enlace del copyright */
