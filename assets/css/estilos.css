@@ -419,7 +419,6 @@ footer a.text-white:hover {
 
 /* ESTILOS PARA EL FORMULARIO */
 
-/* 1. SECCIÓN HERO (Fondo e Imagen) */
 .img-contacto {
     background-image: url('../img/image10.jpeg'); 
     background-size: cover;
@@ -443,7 +442,7 @@ footer a.text-white:hover {
     z-index: 1;
 }
 
-/* 2. TARJETA DEL FORMULARIO */
+/* TARJETA DEL FORMULARIO */
 .card-contacto-hero {
     background: rgba(255, 255, 255, 0.95); /* Blanco casi puro */
     backdrop-filter: blur(5px); /* Efecto vidrio moderno */
@@ -455,16 +454,19 @@ footer a.text-white:hover {
 }
 
 /* Títulos dentro de la tarjeta */
+
 .card-contacto-hero h2 {
     color: var(--main-c);
 }
 
-/* 3. CAMPOS DEL FORMULARIO (INPUTS) */
+/* CAMPOS DEL FORMULARIO (INPUTS) */
+
 .form-floating label {
     color: #666; /* Gris suave para el texto cuando no escribes */
 }
 
 /* Borde azul al escribir */
+
 .form-control:focus {
     border-color: var(--main-c);
     box-shadow: 0 0 0 0.25rem rgba(41, 119, 213, 0.25); /* efecto transparencia */
@@ -474,7 +476,7 @@ textarea {
     resize: none; /* Evita que rompan el diseño */
 }
 
-/* 4. BOTÓN DE ENVIAR */
+/* BOTÓN DE ENVIAR */
 
 .btn-primary {
     background-color: var(--main-c) !important;
