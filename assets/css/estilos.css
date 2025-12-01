@@ -394,11 +394,11 @@ img {
 /* FOOTER */
 
 /* Estilo para los enlaces del footer en la navegación */
-footer .text-white {
+footer a.text-white {
     transition: color 0.3s ease-in-out;
 }
 
-footer .text-white:hover {
+footer a.text-white:hover {
     color: var(--main-c) !important;
 }
 
