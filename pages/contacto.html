@@ -15,38 +15,81 @@
 
     <header id="header-container"></header>
 
-    <main class="container py-5">
+    <main>
+        <section class="img-contacto">
+            
+            <div class="contact-overlay"></div>
 
-        <section class="card">
-            <h2>Contacto</h2>
-
-                <form id="contact-form">
-                    <label>Nombre y Apellido</label>
-                    <input type="text" id="name" name="user_name" placeholder="Juan Perez" required>
-
-                    <label>Correo electrónico</label>
-                    <input type="email" id="email" name="email" placeholder="email@ejemplo.com" required>
-
-                    <label>Telefono</label>
-                    <input type="text" id="tel" name="tel" placeholder="1122334455" required>
-
-                    <label>Asunto</label>
-                    <input type="text" name="asunto" placeholder="Asunto (opcional)">
+            <div class="container py-2">
+                <div class="row justify-content-center">
                     
-                    <label>Mensaje</label>
-                    <textarea id="mensaje" name="mensaje" placeholder="Mensaje" required></textarea>
-                    
-                    <button class="btn" type="submit" id="envio">Enviar<i class="fa-solid fa-paper-plane ms-2"></i></button>
-                </form>
+                    <div class="col-12 col-md-8 col-lg-5">
+                        
+                        <div class="card card-contacto-hero p-4">
+                            
+                            <div class="text-center mb-4">
+                                <h2 class="fw-bold text-primary">Contacto</h2>
+                                <p class="text-muted small">Complete el formulario y nos comunicaremos a la brevedad.</p>
+                            </div>
+
+                            <form id="contact-form">
+
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="name" name="user_name" placeholder="Juan Perez" required>
+                                    <label for="name">Nombre y Apellido</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                                    <label for="email">Correo electrónico</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="tel" class="form-control" id="tel" name="tel" placeholder="Telefono" required>
+                                    <label for="tel">Teléfono</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="asunto" placeholder="Asunto">
+                                    <label for="asunto">Asunto (Opcional)</label>
+                                </div>
+
+                                <div class="form-floating mb-4">
+                                    <textarea class="form-control" placeholder="Mensaje" id="mensaje" name="mensaje" style="height: 120px" required></textarea>
+                                    <label for="mensaje">Mensaje</label>
+                                </div>
+                                
+                                <div class="d-grid mb-4">
+                                    <button class="btn btn-primary btn-lg fw-bold" type="submit" id="envio">
+                                        Enviar<i class="fa-solid fa-paper-plane ms-2"></i>
+                                    </button>
+                                </div>
+
+                            </form>
+
+                            <div class="border-top pt-3 text-center">
+                                <p class="small text-muted mb-2">O contáctanos directamente:</p>
+                                <div class="d-flex justify-content-center gap-3">
+                                    <a href="https://wa.me/5492984401229" class="text-decoration-none text-success fw-bold" target="_blank">
+                                        <i class="fa-brands fa-whatsapp fs-5 me-1"></i> WhatsApp
+                                    </a>
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer id="footer-container"></footer>
-
+    
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/contacto.js"></script>
     <script type="module" src="../assets/js/script.js"></script>
-        
+
 </body>
 </html>

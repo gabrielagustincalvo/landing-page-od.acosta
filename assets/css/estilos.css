@@ -5,7 +5,7 @@
 
 /* ESTILOS GENERALES */
 
-html * {
+body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -419,48 +419,75 @@ footer a.text-white:hover {
 
 /* ESTILOS PARA EL FORMULARIO */
 
-body {
-    font-family: Arial, sans-serif;
-    background: #f6f7fb;
-  }
-  
-  .card {
-    background: #fff;
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-  }
-  
-  label {
-    display: block;
-    margin-top: 12px;
-    font-weight: 600;
-  }
-  
-  input,
-  textarea {
+/* 1. SECCIÓN HERO (Fondo e Imagen) */
+.img-contacto {
+    background-image: url('../img/image10.jpeg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: auto; 
+    padding: 80px 0;  /* Especio arriba y abajo */
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.contact-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 10px;
-    margin-top: 6px;
-    border: 1px solid #dfe4ee;
-    border-radius: 6px;
-    font-size: 14px;
-  }
-  
-  textarea {
-    min-height: 120px;
-    resize: vertical;
-  }
-  
-  .btn {
-    margin-top: 14px;
-    padding: 10px 16px;
-    background: #2563eb;
-    color: #fff;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Capa oscura para resaltar el contenido */
+    z-index: 1;
+}
+
+/* 2. TARJETA DEL FORMULARIO */
+.card-contacto-hero {
+    background: rgba(255, 255, 255, 0.95); /* Blanco casi puro */
+    backdrop-filter: blur(5px); /* Efecto vidrio moderno */
     border: none;
-    border-radius: 6px;
-    cursor: pointer;
+    border-radius: var(--border-r);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 2; 
+}
+
+/* Títulos dentro de la tarjeta */
+.card-contacto-hero h2 {
+    color: var(--main-c);
+}
+
+/* 3. CAMPOS DEL FORMULARIO (INPUTS) */
+.form-floating label {
+    color: #666; /* Gris suave para el texto cuando no escribes */
+}
+
+/* Borde azul al escribir */
+.form-control:focus {
+    border-color: var(--main-c);
+    box-shadow: 0 0 0 0.25rem rgba(41, 119, 213, 0.25); /* efecto transparencia */
+}
+
+textarea {
+    resize: none; /* Evita que rompan el diseño */
+}
+
+/* 4. BOTÓN DE ENVIAR */
+
+.btn-primary {
+    background-color: var(--main-c) !important;
+    border-color: var(--main-c) !important;
+    padding: 12px 20px;
     font-weight: 700;
-  }
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #00296d !important;
+    border-color: #00296d !important;
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 12px rgba(41, 119, 213, 0.4);
+}
