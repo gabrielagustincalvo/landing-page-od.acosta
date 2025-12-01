@@ -24,7 +24,9 @@ const sendBtn = document.getElementById("envio"); // BOTON DE ENVIAR
 form.addEventListener("submit", function(e){
  
     // instruccion de lo que debe hacer el envio del formulario 
-    e.preventDefault(); 
+    e.preventDefault();
+    
+    const btnContent = sendBtn.innerHTML;
 
     sendBtn.textContent = 'Enviando...'; 
     sendBtn.disabled = true; 
@@ -35,13 +37,13 @@ form.addEventListener("submit", function(e){
     .then(()=>{
         alert("Mensaje enviado correctamente"); 
         form.reset(); 
-        sendBtn.textContent = 'Enviar'; 
+        sendBtn.innerHTML = btnContent; 
         sendBtn.disabled = false; 
     })
     .catch((error) => {
         console.error('Emailjs error:', error); 
         alert('Hubo un error al enviar tu mensaje'); 
-        sendBtn.textContent = 'Enviar'; 
+        sendBtn.innerHTML = btnContent; 
         sendBtn.disabled = false; 
     })
 
