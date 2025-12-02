@@ -476,6 +476,54 @@ textarea {
     resize: none; /* Evita que rompan el diseño */
 }
 
+/* ESTILOS PARA CAMPOS COMPLETADOS */
+
+/* Detecta cuando el input o textarea tiene texto */
+.form-floating > .form-control:not(:placeholder-shown) {
+    background-color: #e9f2fb; /* Un fondo azul muy suave basado en tu --main-c */
+    border-color: var(--main-c); /* El borde se pone del color principal */
+    color: #00296d; /* El texto se pone azul oscuro */
+    font-weight: 500; /* Un poco más grueso para resaltar */
+}
+
+/* Opcional: Agregar una pequeña sombra para dar sensación de "listo" */
+.form-floating > .form-control:not(:placeholder-shown):focus {
+    box-shadow: 0 0 0 0.25rem rgba(41, 119, 213, 0.15);
+}
+
+/* Asegurarse de que el label también se vea bien sobre el fondo de color */
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+    color: var(--main-c); /* El título del campo también se pinta de azul */
+    background-color: transparent; /* Evita parches blancos si el fondo cambia */
+}
+
+/* ------------------------------------------------------- */
+/* CORRECCIÓN PARA EL AUTORELLENO DEL NAVEGADOR */
+/* ------------------------------------------------------- */
+
+/* Esto fuerza el estilo sobre el amarillo/azul por defecto de Chrome/Edge */
+.form-control:-webkit-autofill,
+.form-control:-webkit-autofill:hover, 
+.form-control:-webkit-autofill:focus, 
+.form-control:-webkit-autofill:active {
+    
+    /* Usamos una sombra interior gigante para "pintar" el fondo */
+    -webkit-box-shadow: 0 0 0 1000px #f0f7ff inset !important;
+    
+    /* Forzamos el color del texto */
+    -webkit-text-fill-color: #00296d !important;
+    
+    /* Mantenemos el borde de tu color principal */
+    border-color: var(--main-c) !important;
+    
+    /* Mantenemos la fuente y negrita coherente */
+    font-weight: 500 !important;
+    font-family: inherit !important;
+    
+    /* Evita transiciones raras de color de fondo */
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 /* BOTÓN DE ENVIAR */
 
 .btn-primary {
