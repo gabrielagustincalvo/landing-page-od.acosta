@@ -1,27 +1,25 @@
 import { cargarHeader } from './header.js';
 import { cargarFooter } from './footer.js'; 
 
-// ==========================================
-// 1. EJECUCIÓN GLOBAL (Header y Footer)
-// ==========================================
+
+// EJECUCIÓN GLOBAL (Header y Footer)
+
 // Esto se ejecutará en TODAS las páginas que importen este script.
 cargarHeader();
 cargarFooter(); 
 
 
-// ==========================================
-// 2. LÓGICA DE GOOGLE MAPS (Condicional)
-// ==========================================
+// LÓGICA DE GOOGLE MAPS (Condicional)
 
 // Definimos la función initMap y la asignamos a window para que la API de Google la encuentre.
 window.initMap = function() {
     
-    // A. DETECCIÓN DE ELEMENTOS DOM
+    // DETECCIÓN DE ELEMENTOS DOM
     // Buscamos los contenedores en el HTML actual.
     const mapaVillarino = document.getElementById('mapa-villarino');
     const mapaZatti = document.getElementById('mapa-zatti');
 
-    // B. CONDICIONAL DE SALIDA
+    // CONDICIONAL DE SALIDA
     // Si NO existe ninguno de los dos mapas en esta página (ej: estamos en tratamientos.html),
     // detenemos la función aquí. Así evitamos errores y lógica innecesaria.
     if (!mapaVillarino && !mapaZatti) {
@@ -31,7 +29,7 @@ window.initMap = function() {
 
     console.log("Contenedores de mapa detectados. Renderizando mapas...");
 
-    // C. CONFIGURACIÓN DE UBICACIONES
+    // CONFIGURACIÓN DE UBICACIONES
     // Solo definimos esto si sabemos que vamos a usarlo.
     const LOCATIONS = [
         {
@@ -46,7 +44,7 @@ window.initMap = function() {
         }
     ];
 
-    // D. RENDERIZADO
+    // RENDERIZADO
     LOCATIONS.forEach(location => {
         // Verificamos que el elemento exista (por si borraste uno del HTML)
         if (location.element) {
