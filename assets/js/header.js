@@ -1,60 +1,71 @@
-export function cargarHeader(){
-    
-    document.addEventListener('DOMContentLoaded', ()=> {
-        // Necesito la ruta del archivo que quiero tomar
+export function cargarHeader() {
+    document.addEventListener('DOMContentLoaded', () => {
         const headerContainer = document.getElementById('header-container');
-        // Aca toma el div o la etiqueta que tenga este id
 
-        // Validamos que este leyendo el contenedor
         if (!headerContainer) {
-            console.error("No se encuentra el contenedor #header-container")
+            console.error("No se encuentra el contenedor #header-container");
             return;
-        };
+        }
 
-        fetch('/includes/header.html') // Traigo el archivo este
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error ${response.status}: No se pudo cargar el archivo header`)
-                // Error el archivo se ha roto: No se pudo cargar el archivo
-            }
-            return response.text();
-        })
+        // 1. DETECTAR UBICACIÓN ACTUAL
+        // Si estamos dentro de la carpeta /pages/ o /tratamientos/, necesitamos salir un nivel (../)
+        // Si estamos en el index, nos quedamos en el nivel actual (./)
+        const path = window.location.pathname;
+        let rutaRelativa = './';
+        
+        if (path.includes('/pages/') || path.includes('/tratamientos/')) {
+            rutaRelativa = '../';
+        }
 
-        .then(htmlContent => {
-            headerContainer.innerHTML = htmlContent
+        // 2. HACER EL FETCH CON LA RUTA CORREGIDA
+        // Quitamos la barra del inicio '/' y usamos la ruta relativa calculada
+        fetch(rutaRelativa + 'includes/header.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error ${response.status}: No se pudo cargar el archivo header`);
+                }
+                return response.text();
+            })
+            .then(htmlContent => {
+                headerContainer.innerHTML = htmlContent;
 
-            // 1. Dónde estoy parado ahora (Ej: /tratamientos/bruxismo.html)
-            const currentPath = window.location.pathname;
+                // 3. CORREGIR ENLACES E IMÁGENES DENTRO DEL HEADER
+                // Como el HTML del header tiene rutas con '/' (ej: /index.html), 
+                // las reemplazamos dinámicamente para que funcionen en GitHub Pages.
                 
-            // 2. Buscamos SOLO los enlaces principales del menú (nav-link)
-            const navLinks = headerContainer.querySelectorAll('.nav-link');
+                const elementosConRuta = headerContainer.querySelectorAll('[src], [href]');
+                
+                elementosConRuta.forEach(el => {
+                    const atributo = el.hasAttribute('src') ? 'src' : 'href';
+                    let valor = el.getAttribute(atributo);
 
-            navLinks.forEach(link => {
-                const linkHref = link.getAttribute('href');
+                    // Si la ruta empieza con '/', se la quitamos y agregamos la ruta relativa
+                    if (valor && valor.startsWith('/')) {
+                        // Ejemplo: convierte "/assets/img/foto.jpg" en "../assets/img/foto.jpg"
+                        let nuevoValor = rutaRelativa + valor.substring(1);
+                        el.setAttribute(atributo, nuevoValor);
+                    }
+                });
 
-                if (!linkHref) return; // Si el link está vacío, ignorar.
+                // 4. LÓGICA DE "ACTIVE" (TU CÓDIGO ORIGINAL ADAPTADO)
+                const currentPath = window.location.pathname;
+                const navLinks = headerContainer.querySelectorAll('.nav-link');
 
-                // CASO A: Coincidencia Exacta
-                // Sirve para Inicio, Acerca de mí, Contacto.
-                // Ej: currentPath es "/pages/contacto.html" y el link es "/pages/contacto.html"
-                if (currentPath === linkHref) {
-                    link.classList.add('active');
-                }
+                navLinks.forEach(link => {
+                    const linkHref = link.getAttribute('href');
+                    if (!linkHref) return;
+
+                    // Normalizamos para comparar (quitamos los ./ o ../ para verificar coincidencia)
+                    const cleanLink = linkHref.replace(/^(\.\/|\.\.\/)/, '/'); 
                     
-                // CASO B: Página de Inicio (Raíz)
-                // Si estás en midominio.com/ y el link es index.html
-                else if (currentPath === '/' && linkHref.includes('index.html')) {
-                    link.classList.add('active');
-                }
-
-                // CASO C: Sección TRATAMIENTOS
-                // Si la URL actual tiene la palabra "tratamientos" (ej: /tratamientos/bruxismo.html)
-                // Y el botón del menú también lleva a "tratamientos"
-                else if (currentPath.includes('tratamientos') && linkHref.includes('tratamientos')) {
-                    link.classList.add('active');
-                }
-            });
-        })
-        .catch(err => console.error('Error cargando el header', err));
-    })
+                    // Lógica de coincidencia simple
+                    if (currentPath.endsWith(cleanLink) || (currentPath === '/' && cleanLink.includes('index.html'))) {
+                        link.classList.add('active');
+                    } else if (currentPath.includes('tratamientos') && cleanLink.includes('tratamientos')) {
+                        link.classList.add('active');
+                    }
+                });
+            })
+            .catch(err => console.error('Error cargando el header', err));
+    });
 }
