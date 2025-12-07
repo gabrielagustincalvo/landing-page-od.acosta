@@ -5,24 +5,17 @@ import { cargarFooter } from './footer.js';
 cargarHeader();
 cargarFooter(); 
 
-
-// 2. FUNCIÓN DE RENDERIZADO (Dibuja los mapas)
-window.renderizarMapas = function() {
+// 2. FUNCIÓN PARA DIBUJAR LOS MAPAS
+// La definimos primero para que esté lista cuando Google la llame.
+window.initMap = function() {
     
     const mapaVillarino = document.getElementById('mapa-villarino');
     const mapaZatti = document.getElementById('mapa-zatti');
 
-    // Si no existen los contenedores (ej: estás en tratamientos.html), salimos.
+    // Si no existen los contenedores, no hacemos nada.
     if (!mapaVillarino && !mapaZatti) return;
 
-    // Verificar que Google Maps realmente existe antes de usarlo
-    if (!window.google || !window.google.maps) {
-        // Si no está listo, esperamos un poco y reintentamos
-        setTimeout(window.renderizarMapas, 100);
-        return;
-    }
-
-    console.log("Dibujando mapas...");
+    console.log("Renderizando mapas...");
 
     const LOCATIONS = [
         {
@@ -39,10 +32,9 @@ window.renderizarMapas = function() {
 
     LOCATIONS.forEach(location => {
         if (location.element) {
-            // PASO CLAVE: Limpiamos el contenedor antes de crear un mapa nuevo.
-            // Esto evita que se superpongan mapas si la función se ejecuta dos veces.
+            // Limpiamos por seguridad
             location.element.innerHTML = '';
-
+            
             const map = new google.maps.Map(location.element, {
                 zoom: 15, 
                 center: location.coords,
@@ -59,60 +51,48 @@ window.renderizarMapas = function() {
             });
         }
     });
-}
+};
 
-// Vinculamos initMap a nuestra función para cuando el script de Google lo llame
-window.initMap = window.renderizarMapas;
-
-
-// 3. LOGICA DE CARGA (Loader)
+// 3. CARGADOR INTELIGENTE (LA SOLUCIÓN)
 function cargarGoogleMaps() {
-    
-    // A. ¿Hay mapas en esta página?
-    const hayContenedores = document.getElementById('mapa-villarino');
-    if (!hayContenedores) return; 
+    // A. Verificamos si la página actual necesita mapas
+    const hayMapas = document.getElementById('mapa-villarino');
+    if (!hayMapas) return; // Si estamos en "Tratamientos", no cargamos nada.
 
-    // B. ¿Google Maps YA está en memoria? 
-    // (Esto pasa si vuelves del historial o navegas desde otra sección)
+    // B. Verificamos si la API ya está cargada en el navegador (por navegación previa)
     if (window.google && window.google.maps) {
-        // Aunque esté en memoria, FORZAMOS el redibujado
-        console.log("Google en memoria. Forzando renderizado...");
-        window.renderizarMapas();
+        // Si ya existe, ejecutamos el dibujo directamente
+        window.initMap();
         return;
     }
 
-    // C. Evitar doble inyección de script
-    if (document.getElementById('google-maps-script')) {
-        return; 
-    }
+    // C. Verificamos si ya pedimos el script pero aún no llega
+    if (document.getElementById('gmaps-script')) return;
 
-    // D. Inyectar el script
-    console.log("Cargando API...");
+    // D. INYECCIÓN DEL SCRIPT (Solo ocurre si initMap ya está definido arriba)
+    console.log("Cargando API de Google Maps dinámicamente...");
     const script = document.createElement('script');
+    // Callback apunta a nuestra función window.initMap
     script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB4wbd68nbbVZ9zrejhdD7SUw2GULQntho&callback=initMap';
-    script.id = 'google-maps-script';
+    script.id = 'gmaps-script';
     script.async = true;
     script.defer = true;
     document.body.appendChild(script);
 }
 
 // 4. EJECUCIONES
-
-// Ejecutar al cargar la página normalmente
+// Ejecutar al cargar el script
 cargarGoogleMaps();
 
-// EVENTO PAGESHOW: La solución definitiva al botón "Atrás" y navegación interna.
-// Este evento se dispara siempre que la página se vuelve visible.
+// Ejecutar si el usuario vuelve a la página usando "Atrás"
 window.addEventListener('pageshow', (event) => {
-    // Verificamos si hay mapas en la pantalla actual
-    const hayMapas = document.getElementById('mapa-villarino');
-    if (hayMapas) {
-        console.log("Evento pageshow detectado. Revisando mapas...");
-        // Si Google ya existe, redibujamos sin miedo.
+    // Solo si estamos en una página con mapas
+    if (document.getElementById('mapa-villarino')) {
+        // Si Google ya está, redibujamos
         if (window.google && window.google.maps) {
-            window.renderizarMapas();
+            window.initMap();
         } else {
-            // Si no existe, intentamos cargar de nuevo
+            // Si no, intentamos cargar de nuevo
             cargarGoogleMaps();
         }
     }
