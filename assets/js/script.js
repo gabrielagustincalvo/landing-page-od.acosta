@@ -6,7 +6,6 @@ cargarHeader();
 cargarFooter(); 
 
 // 2. FUNCIÓN PARA DIBUJAR LOS MAPAS
-// La definimos primero para que esté lista cuando Google la llame.
 window.initMap = function() {
     
     const mapaVillarino = document.getElementById('mapa-villarino');
@@ -14,6 +13,9 @@ window.initMap = function() {
 
     // Si no existen los contenedores, no hacemos nada.
     if (!mapaVillarino && !mapaZatti) return;
+
+    // VALIDACIÓN EXTRA: Si Google no cargó bien, no intentamos dibujar para evitar errores
+    if (!window.google || !window.google.maps) return;
 
     console.log("Renderizando mapas...");
 
@@ -53,26 +55,33 @@ window.initMap = function() {
     });
 };
 
-// 3. CARGADOR INTELIGENTE (LA SOLUCIÓN)
+// 3. CARGADOR INTELIGENTE
 function cargarGoogleMaps() {
     // A. Verificamos si la página actual necesita mapas
     const hayMapas = document.getElementById('mapa-villarino');
-    if (!hayMapas) return; // Si estamos en "Tratamientos", no cargamos nada.
+    if (!hayMapas) return; 
 
-    // B. Verificamos si la API ya está cargada en el navegador (por navegación previa)
+    // B. ¿La API ya está lista y funcional?
     if (window.google && window.google.maps) {
-        // Si ya existe, ejecutamos el dibujo directamente
         window.initMap();
         return;
     }
 
-    // C. Verificamos si ya pedimos el script pero aún no llega
-    if (document.getElementById('gmaps-script')) return;
+    // C. CORRECCIÓN CLAVE: MANEJO DE SCRIPT ZOMBI
+    // Verificamos si la etiqueta del script ya existe
+    const scriptExistente = document.getElementById('gmaps-script');
+    
+    if (scriptExistente) {
+        // Si la etiqueta existe, PERO llegamos a este punto, significa que 
+        // window.google NO existe (falló la carga o se perdió por navegación).
+        // ENTONCES: Borramos la etiqueta vieja para forzar una recarga limpia.
+        console.log("Detectado script zombi. Eliminando y recargando...");
+        scriptExistente.remove();
+    }
 
-    // D. INYECCIÓN DEL SCRIPT (Solo ocurre si initMap ya está definido arriba)
-    console.log("Cargando API de Google Maps dinámicamente...");
+    // D. INYECCIÓN DEL SCRIPT
+    console.log("Cargando API de Google Maps...");
     const script = document.createElement('script');
-    // Callback apunta a nuestra función window.initMap
     script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB4wbd68nbbVZ9zrejhdD7SUw2GULQntho&callback=initMap';
     script.id = 'gmaps-script';
     script.async = true;
@@ -81,19 +90,16 @@ function cargarGoogleMaps() {
 }
 
 // 4. EJECUCIONES
-// Ejecutar al cargar el script
+
+// Ejecutar al cargar la página
 cargarGoogleMaps();
 
-// Ejecutar si el usuario vuelve a la página usando "Atrás"
+// Ejecutar al volver usando "Atrás" o navegación por historial
 window.addEventListener('pageshow', (event) => {
-    // Solo si estamos en una página con mapas
+    // Si hay mapas en la pantalla...
     if (document.getElementById('mapa-villarino')) {
-        // Si Google ya está, redibujamos
-        if (window.google && window.google.maps) {
-            window.initMap();
-        } else {
-            // Si no, intentamos cargar de nuevo
-            cargarGoogleMaps();
-        }
+        // Intentamos cargar de nuevo. Nuestra nueva lógica detectará si hay 
+        // un script viejo que no funciona y lo reemplazará.
+        cargarGoogleMaps();
     }
 });
