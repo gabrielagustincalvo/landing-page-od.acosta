@@ -1,39 +1,25 @@
 import { cargarHeader } from './header.js';
 import { cargarFooter } from './footer.js'; 
 
-
-// EJECUCIÓN GLOBAL (Header y Footer)
-
-// Esto se ejecutará en TODAS las páginas que importen este script.
+// 1. EJECUCIÓN GLOBAL
 cargarHeader();
 cargarFooter(); 
 
-
-// LÓGICA DE GOOGLE MAPS (Condicional)
-
-// Definimos la función initMap y la asignamos a window para que la API de Google la encuentre.
+// 2. DEFINIR LA FUNCIÓN INITMAP
+// Esta función debe existir ANTES de llamar a Google
 window.initMap = function() {
     
-    // DETECCIÓN DE ELEMENTOS DOM
-    // Buscamos los contenedores en el HTML actual.
     const mapaVillarino = document.getElementById('mapa-villarino');
     const mapaZatti = document.getElementById('mapa-zatti');
 
-    // CONDICIONAL DE SALIDA
-    // Si NO existe ninguno de los dos mapas en esta página (ej: estamos en tratamientos.html),
-    // detenemos la función aquí. Así evitamos errores y lógica innecesaria.
-    if (!mapaVillarino && !mapaZatti) {
-        // Opcional: console.log("No hay mapas en esta página, omitiendo lógica de Google Maps.");
-        return; 
-    }
+    // Si por alguna razón se ejecutó y no están los mapas, salimos.
+    if (!mapaVillarino && !mapaZatti) return;
 
-    console.log("Contenedores de mapa detectados. Renderizando mapas...");
+    console.log("Renderizando mapas...");
 
-    // CONFIGURACIÓN DE UBICACIONES
-    // Solo definimos esto si sabemos que vamos a usarlo.
     const LOCATIONS = [
         {
-            element: mapaVillarino, // Pasamos el elemento HTML directo
+            element: mapaVillarino,
             coords: { lat: -40.80377, lng: -62.99217 }, 
             title: 'Consultorio Villarino (Costanera)'
         },
@@ -44,20 +30,16 @@ window.initMap = function() {
         }
     ];
 
-    // RENDERIZADO
     LOCATIONS.forEach(location => {
-        // Verificamos que el elemento exista (por si borraste uno del HTML)
         if (location.element) {
-            const mapOptions = {
+            const map = new google.maps.Map(location.element, {
                 zoom: 15, 
                 center: location.coords,
                 disableDefaultUI: true, 
                 zoomControl: true,
                 mapTypeControl: false,
                 streetViewControl: false
-            };
-
-            const map = new google.maps.Map(location.element, mapOptions);
+            });
 
             new google.maps.Marker({
                 position: location.coords,
@@ -68,11 +50,36 @@ window.initMap = function() {
     });
 };
 
-// MANEJO DE CARGA ASÍNCRONA (Race Condition)
+// 3. CARGA DINÁMICA DE GOOGLE MAPS
+// Esta función crea la etiqueta <script> programáticamente
+function cargarGoogleMaps() {
+    // Verificamos si ya hay mapas en la página. Si no hay, no descargamos nada (ahorramos recursos).
+    const hayMapas = document.getElementById('mapa-villarino') || document.getElementById('mapa-zatti');
+    
+    if (!hayMapas) {
+        // console.log("No hay mapas en esta página, no se carga la API.");
+        return;
+    }
 
-// A veces la API de google puede cargar mas rapido que el modulo js, si eso pasa el callback=init.Map falla porque initMap todavia no existia.
-// Si detectamos que google.maps ya está listo, lanzamos initMap manualmente.
+    // Evitamos cargar el script dos veces si el usuario navega rápido
+    if (document.getElementById('google-maps-script')) {
+        // Si el script ya existe, quizás ya cargó, intentamos lanzar initMap manual
+        if(window.google && window.google.maps) window.initMap();
+        return;
+    }
 
-if (window.google && window.google.maps) {
-    window.initMap();
+    // Creamos la etiqueta script
+    const script = document.createElement('script');
+    // IMPORTANTE: Aquí va tu API Key. Nota que mantenemos el callback=initMap
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB4wbd68nbbVZ9zrejhdD7SUw2GULQntho&callback=initMap';
+    script.id = 'google-maps-script';
+    script.async = true;
+    script.defer = true;
+
+    // Lo agregamos al HTML
+    document.body.appendChild(script);
+    console.log("Solicitando API de Google Maps...");
 }
+
+// Ejecutamos la carga
+cargarGoogleMaps();
